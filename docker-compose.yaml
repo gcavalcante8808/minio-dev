@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  minio:
+    image: minio:dev
+    build: .
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+      MINIO_INITIAL_BUCKET: default
+      MINIO_INITIAL_BUCKET_PERMISSION: none
+
