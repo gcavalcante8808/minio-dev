@@ -5,7 +5,7 @@ set -em
 configure_initial_bucket () {
     dockerize -wait tcp://localhost:9000 -timeout 30s
     mc config host add default http://localhost:9000 ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY}
-    mc mb default/"${MINIO_INITIAL_BUCKET:-default}" || true
+    mc mb --ignore-existing default/"${MINIO_INITIAL_BUCKET:-default}"
     mc policy set "${MINIO_INITIAL_BUCKET_PERMISSION:-none}" default/"${MINIO_INITIAL_BUCKET:-default}"
 }
 
