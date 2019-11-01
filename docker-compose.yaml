@@ -2,7 +2,7 @@ version: '2'
 
 services:
   minio:
-    image: minio:dev
+    image: gcavalcante8808/minio-dev:latest
     build: .
     environment:
       MINIO_ACCESS_KEY: minio
