@@ -10,7 +10,7 @@ configure_initial_bucket () {
 }
 
 start_minio_server_in_background () {
-    minio server /data &
+    minio server --console-address ":8999" /data &
 }
 
 return_minio_server_to_foreground () {
