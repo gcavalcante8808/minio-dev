@@ -3,14 +3,14 @@
 set -em
 
 configure_initial_bucket () {
-    dockerize -wait tcp://localhost:9000 -timeout 30s
-    mc config host add default http://localhost:9000 ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY}
+    wait-for-it -t 30 localhost:9000
+    mc config host add default http://localhost:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}
     mc mb --ignore-existing default/"${MINIO_INITIAL_BUCKET:-default}"
     mc policy set "${MINIO_INITIAL_BUCKET_PERMISSION:-none}" default/"${MINIO_INITIAL_BUCKET:-default}"
 }
 
 start_minio_server_in_background () {
-    /usr/bin/minio server /data &
+    minio server /data &
 }
 
 return_minio_server_to_foreground () {
