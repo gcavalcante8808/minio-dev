@@ -4,9 +4,11 @@ services:
   minio:
     image: gcavalcante8808/minio-dev:latest
     build: .
+    ports:
+      - 9000:9000
+      - 8999:8999
     environment:
       MINIO_ROOT_USER: minio
       MINIO_ROOT_PASSWORD: minio123
       MINIO_INITIAL_BUCKET: default
       MINIO_INITIAL_BUCKET_PERMISSION: none
-
